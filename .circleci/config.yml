@@ -77,7 +77,6 @@ jobs:
           name: Test front-end
           command: |
             cd frontend
-            rm -rf node_modules
             npm install
             npm run test
       - save_cache:
