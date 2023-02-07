@@ -224,7 +224,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "6b:d6:e8:db:aa:15:71:5f:fe:ae:9b:39:9b:37:c4:e0"
+            - "af:3c:63:4f:fb:02:01:0a:1f:a1:a2:69:87:a2:52:5d"
       - attach_workspace:
           at: ~/
       - install-ansible
@@ -268,7 +268,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "6b:d6:e8:db:aa:15:71:5f:fe:ae:9b:39:9b:37:c4:e0"
+            - "af:3c:63:4f:fb:02:01:0a:1f:a1:a2:69:87:a2:52:5d"
       - attach_workspace:
           at: ~/
       - install-ansible
@@ -306,7 +306,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "6b:d6:e8:db:aa:15:71:5f:fe:ae:9b:39:9b:37:c4:e0"
+            - "af:3c:63:4f:fb:02:01:0a:1f:a1:a2:69:87:a2:52:5d"
       - attach_workspace:
           at: ~/
       - install-ansible
@@ -338,6 +338,7 @@ jobs:
             cat inventory.txt
             pwd
             ansible-playbook -i inventory.txt deploy-backend.yml
+
       - destroy-environment
       - revert-migrations 
 
