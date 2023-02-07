@@ -8,6 +8,12 @@
   shell: |
     cd ~/backend-app
     npm i
+
+- name: "Unarchive backend files"
+  unarchive:
+    src: artifact.tar.gz
+    dest: ~/backend-app
+    
 - name: "Executing Node app with PM2"
   shell: |
     cd ~/backend-app/dist
