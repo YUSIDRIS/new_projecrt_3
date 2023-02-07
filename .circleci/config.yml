@@ -224,7 +224,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "88:24:15:bd:9c:7c:4d:21:28:e0:33:c6:d5:f4:29:c8"
+            - "6b:d6:e8:db:aa:15:71:5f:fe:ae:9b:39:9b:37:c4:e0"
       - attach_workspace:
           at: ~/
       - install-ansible
@@ -268,7 +268,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "88:24:15:bd:9c:7c:4d:21:28:e0:33:c6:d5:f4:29:c8"
+            - "6b:d6:e8:db:aa:15:71:5f:fe:ae:9b:39:9b:37:c4:e0"
       - attach_workspace:
           at: ~/
       - install-ansible
@@ -306,7 +306,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "88:24:15:bd:9c:7c:4d:21:28:e0:33:c6:d5:f4:29:c8"
+            - "6b:d6:e8:db:aa:15:71:5f:fe:ae:9b:39:9b:37:c4:e0"
       - attach_workspace:
           at: ~/
       - install-ansible
@@ -431,7 +431,7 @@ workflows:
           requires: [run-migrations]
       - smoke-test:
           requires: [deploy-backend, deploy-frontend]
-      # - cloudfront-update:
-      #     requires: [smoke-test]
+      - cloudfront-update:
+          requires: [smoke-test]
       # - cleanup:
       #     requires: [cloudfront-update]
