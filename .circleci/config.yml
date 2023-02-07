@@ -315,7 +315,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-                cd backend
+            cd backend
             npm install
       - run:
           name: Package Backend
