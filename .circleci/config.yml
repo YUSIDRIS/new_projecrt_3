@@ -158,7 +158,7 @@ jobs:
             cd frontend
             npm install
             npm audit fix --audit-level=critical --force
-            # npm install oauth-sign@^0.9.0
+            npm audit fix -- force
             npm audit --audit-level=critical
       - save_cache:
           paths: [frontend/node_modules]
@@ -245,7 +245,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "7c:94:37:dc:a6:23:58:07:35:9d:7e:c9:84:25:81:cc"
+            - "80:f8:de:37:60:24:4a:d0:c9:17:78:07:26:f3:04:41"
       - attach_workspace:
           at: ~/
     
@@ -292,7 +292,7 @@ jobs:
 
       - add_ssh_keys:
           fingerprints: 
-            - "7c:94:37:dc:a6:23:58:07:35:9d:7e:c9:84:25:81:cc"
+            - ""
       - attach_workspace:
           at: ~/
 
@@ -335,7 +335,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints: 
-            - "7c:94:37:dc:a6:23:58:07:35:9d:7e:c9:84:25:81:cc"
+            - "80:f8:de:37:60:24:4a:d0:c9:17:78:07:26:f3:04:41"
       - attach_workspace:
           at: ~/
       - install_nodejs
