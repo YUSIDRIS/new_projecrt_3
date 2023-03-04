@@ -1,4 +1,8 @@
 ---
+- name: "wait 600 seconds for target connection to become reachable/usable."
+      # Your code here
+  wait_for_connection:
+    timeout: 600
 - name: "Creates backend app directory"
   file:
     path: ~/backend-app
@@ -34,5 +38,6 @@
   become: true
   shell: |
     env PATH=$PATH:/usr/local/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu
+
 
 
