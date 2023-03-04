@@ -1,6 +1,5 @@
 ---
 - name: install nodejs
-   hosts: web
    gather_facts: True
    sudo: True
    tasks:
