@@ -3,9 +3,6 @@
       # Your code here
   wait_for_connection:
     timeout: 600
-    
-  - name: "show remote environment"
-    shell: env
 
   - name: "copy backend binaries"
     become: yes
