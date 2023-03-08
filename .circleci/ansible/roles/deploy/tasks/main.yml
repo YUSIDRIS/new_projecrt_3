@@ -3,34 +3,49 @@
       # Your code here
   wait_for_connection:
     timeout: 600
+
+- name: "Creates backend app directory"
+  file:
+    path: ~/backend-app
+    state: directory
+
+- name: "Unarchive backend files"
+  unarchive:
+    src: artifact.tar.gz
+    dest: ~/backend-app
+
+- name: "Installing Node Dependencies"
+  shell: |
+    cd ~/backend-app
+    npm i
+- name: "Executing Node app with PM2"
+  shell: |
+    cd ~/backend-app/dist
+    cd ../
+    npm install
     
-- name: "show remote environment"
-  shell: env
+    npm run build
+    sudo npm install forever -g
+    sudo npm install ts-node -g
+    forever start -c "ts-node -r tsconfig-paths/register -r dotenv/config src/main.ts" ./
+    
+  register: execute_node
 
-- name: "copy backend binaries"
-  become: yes
-  synchronize:
-    src: ../../backend/dist
-    dest: /home/ubuntu/uda_app
-    recursive: true
+- name: print message
+  debug:
+    msg: "{{ execute_node.stdout_lines }}"
 
-- name: "copy node_modules"
-  become: yes
-  synchronize:
-    src: ../../backend/node_modules
-    dest: /home/ubuntu/uda_app
-    recursive: true
-
-- name: "delete anything that might already be running"
+- name: "Configure pm2 to start as service"
   become: true
-  command: pm2 delete all
-  ignore_errors: true
+  shell: |
+    env PATH=$PATH:/usr/local/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu
+
 
 - name: "start server"
   become: true
   command: pm2 start -f ./main.js
   args:
-    chdir: /home/ubuntu/uda_app/dist
+    chdir: ~/backend-app
   environment:
     ENVIRONMENT: production
     TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION') }}"
